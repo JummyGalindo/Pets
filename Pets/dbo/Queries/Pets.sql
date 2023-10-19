@@ -8,7 +8,7 @@ go
 
 CREATE TABLE [Productos]
 (
-	[IdProducto] INT NOT NULL PRIMARY KEY, 
+	[IdProducto] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [Nombre] NCHAR(10) NULL, 
     [FechaIngreso] DATETIME NOT NULL, 
     [Proveedor] VARCHAR(100) NOT NULL, 
@@ -24,7 +24,7 @@ go
 
 CREATE TABLE [Personas]
 (
-	[IdPersona] INT NOT NULL PRIMARY KEY, 
+	[IdPersona] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [Nombre] VARCHAR(200) NOT NULL, 
     [Apellidos] VARCHAR(200) NOT NULL, 
     [Cuidad] VARCHAR(50) NULL, 
@@ -36,7 +36,7 @@ go
 
 CREATE TABLE [Roles]
 (
-	[IdRol] INT NOT NULL PRIMARY KEY, 
+	[IdRol] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [Nombre] VARCHAR(50) NOT NULL
 )
 go
@@ -44,7 +44,7 @@ go
 
 CREATE TABLE [Departamentos]
 (
-	[IdDepartamento] INT NOT NULL PRIMARY KEY, 
+	[IdDepartamento] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [Nombre] VARCHAR(50) NOT NULL, 
     [Descripcion] NVARCHAR(150) NOT NULL, 
     [Estado] BIT NOT NULL, 
@@ -54,7 +54,7 @@ go
 
 CREATE TABLE [Usuarios]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [Nombre] VARCHAR(50) NOT NULL, 
     [Email] NVARCHAR(50) NOT NULL, 
     [Contrasenia] NVARCHAR(50) NOT NULL, 
@@ -69,7 +69,7 @@ go
 
 CREATE TABLE [PersonaDepartamento]
 (
-	[IdPersonaDepartamento] INT NOT NULL PRIMARY KEY, 
+	[IdPersonaDepartamento] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [IdPersona] INT NOT NULL, 
     [IdDepartamento] INT NOT NULL, 
     CONSTRAINT [FK_PersonaDepartamento_Personas] FOREIGN KEY ([IdPersona]) REFERENCES [Personas]([IdPersona]), 
@@ -80,7 +80,7 @@ go
 
 CREATE TABLE [Pacientes]
 (
-	[IdPaciente] INT NOT NULL PRIMARY KEY, 
+	[IdPaciente] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [Nombre] VARCHAR(150) NOT NULL, 
     [Raza] VARCHAR(150) NULL, 
     [Especie] VARCHAR(50) NULL, 
@@ -95,7 +95,7 @@ go
 
 CREATE TABLE [Inventarios]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [FechaIngreso] DATETIME NOT NULL, 
     [FechaVencimiento] DATETIME NOT NULL, 
     [Stock] INT NULL, 
@@ -107,7 +107,7 @@ go
 
 CREATE TABLE [Internamientos]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [FechaIngreso] DATETIME NOT NULL, 
     [Medicamento] VARCHAR(150) NULL, 
     [Antecedentes] VARCHAR(150) NULL, 
@@ -124,7 +124,7 @@ go
 
 CREATE TABLE [Historiales]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [FechaVisita] DATETIME NULL, 
     [Motivo] VARCHAR(200) NULL, 
     [Diagnostico] VARCHAR(200) NULL, 
@@ -135,7 +135,7 @@ go
 
 CREATE TABLE [Citas]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [FechaCita] DATETIME NOT NULL, 
     [Motivo] VARCHAR(200) NOT NULL, 
     [IdPersona] INT NOT NULL, 
