@@ -1,10 +1,10 @@
 ﻿CREATE TABLE [dbo].[Inventarios]
 (
 	[Id] INT NOT NULL PRIMARY KEY, 
-    [FechaIngreso] DATETIME NULL, 
-    [FechaVencimiento] DATETIME NULL, 
+    [FechaIngreso] DATETIME NOT NULL, 
+    [FechaVencimiento] DATETIME NOT NULL, 
     [Stock] INT NULL, 
-    [Estado] BIT NULL, 
-    [IdProducto] INT NULL, 
+    [Estado] BIT NOT NULL, 
+    [IdProducto] INT NOT NULL, 
     CONSTRAINT [FK_Inventarios_Productos] FOREIGN KEY ([IdProducto]) REFERENCES [Productos]([IdProducto])
 )
