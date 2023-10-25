@@ -6,5 +6,7 @@
     [Cuidad] VARCHAR(50) NULL, 
     [CodigoPostal] INT NULL, 
     [Telefono] VARCHAR(20) NULL, 
-    [Estado] BIT NOT NULL
+    [Estado] BIT NOT NULL, 
+    [IdTipoPersona] INT NOT NULL, 
+    CONSTRAINT [FK_Personas_TipoPersona] FOREIGN KEY ([IdTipoPersona]) REFERENCES [TipoPersona]([IdTipoPersona])
 )
