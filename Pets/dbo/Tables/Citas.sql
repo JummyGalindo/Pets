@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Citas]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [FechaCita] DATETIME NOT NULL, 
     [Motivo] VARCHAR(200) NOT NULL, 
     [IdPersona] INT NOT NULL, 

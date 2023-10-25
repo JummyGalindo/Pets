@@ -85,7 +85,7 @@ CREATE TABLE [PersonaDepartamento]
 go
 
 
-CREATE TABLE [Pacientes]
+CREATE TABLE [dbo].[Pacientes]
 (
 	[IdPaciente] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [Nombre] VARCHAR(150) NOT NULL, 
@@ -96,7 +96,9 @@ CREATE TABLE [Pacientes]
     [Color] VARCHAR(50) NULL, 
     [Peso] VARCHAR(50) NULL, 
     [Estado] BIT NOT NULL, 
-    [Fecha] DATETIME NOT NULL
+    [Fecha] DATETIME NOT NULL, 
+    [IdPersona] INT NOT NULL, 
+    CONSTRAINT [FK_Pacientes_Personas] FOREIGN KEY ([IdPersona]) REFERENCES [Personas]([IdPersona]) 
 )
 go
 
@@ -142,7 +144,7 @@ go
 
 CREATE TABLE [dbo].[Citas]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [FechaCita] DATETIME NOT NULL, 
     [Motivo] VARCHAR(200) NOT NULL, 
     [IdPersona] INT NOT NULL, 
@@ -153,3 +155,5 @@ CREATE TABLE [dbo].[Citas]
 go
 
 
+INSERT INTO EstadoCitas values('Activa'), ('Cancelada'), ('Reagendada')
+go
