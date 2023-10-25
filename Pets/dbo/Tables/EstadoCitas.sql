@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[EstadoCitas]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[Nombre] VARCHAR(100) NOT NULL
+)

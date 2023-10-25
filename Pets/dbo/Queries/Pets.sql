@@ -9,7 +9,7 @@ go
 CREATE TABLE [Productos]
 (
 	[IdProducto] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
-    [Nombre] NCHAR(10) NULL, 
+    [Nombre] VARCHAR(200) NOT NULL, 
     [FechaIngreso] DATETIME NOT NULL, 
     [Proveedor] VARCHAR(100) NOT NULL, 
     [Cantidad] INT NOT NULL, 
@@ -21,6 +21,13 @@ CREATE TABLE [Productos]
     [Estado] BIT NOT NULL
 )
 go
+
+CREATE TABLE [dbo].[EstadoCitas]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[Nombre] VARCHAR(100) NOT NULL
+)
+GO
 
 CREATE TABLE [Personas]
 (
@@ -133,13 +140,15 @@ CREATE TABLE [Historiales]
 )
 go
 
-CREATE TABLE [Citas]
+CREATE TABLE [dbo].[Citas]
 (
-	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+	[Id] INT NOT NULL PRIMARY KEY, 
     [FechaCita] DATETIME NOT NULL, 
     [Motivo] VARCHAR(200) NOT NULL, 
     [IdPersona] INT NOT NULL, 
-    CONSTRAINT [FK_Citas_Personas] FOREIGN KEY ([IdPersona]) REFERENCES [Personas]([IdPersona]) 
+    [IdEstado] INT NOT NULL, 
+    CONSTRAINT [FK_Citas_Personas] FOREIGN KEY ([IdPersona]) REFERENCES [Personas]([IdPersona]), 
+    CONSTRAINT [FK_Citas_EstadoCitas] FOREIGN KEY ([IdEstado]) REFERENCES [EstadoCitas]([Id]) 
 )
 go
 
