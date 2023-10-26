@@ -24,9 +24,23 @@ go
 
 CREATE TABLE [dbo].[TipoPersona]
 (
-	[IdTipoPersona] INT NOT NULL PRIMARY KEY PRIMARY KEY IDENTITY(1,1), 
+	[IdTipoPersona] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [Nombre] VARCHAR(50) NULL, 
     [Descripcion] VARCHAR(100) NULL
+)
+go
+
+CREATE TABLE [dbo].[Personas]
+(
+	[IdPersona] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+    [Nombre] VARCHAR(200) NOT NULL, 
+    [Apellidos] VARCHAR(200) NOT NULL, 
+    [Cuidad] VARCHAR(50) NULL, 
+    [CodigoPostal] INT NULL, 
+    [Telefono] VARCHAR(20) NULL, 
+    [Estado] BIT NOT NULL, 
+    [IdTipoPersona] INT NOT NULL, 
+    CONSTRAINT [FK_Personas_TipoPersona] FOREIGN KEY ([IdTipoPersona]) REFERENCES [TipoPersona]([IdTipoPersona])
 )
 go
 
@@ -152,19 +166,7 @@ CREATE TABLE [dbo].[Citas]
 )
 go
 
-CREATE TABLE [dbo].[Personas]
-(
-	[IdPersona] INT NOT NULL PRIMARY KEY, 
-    [Nombre] VARCHAR(200) NOT NULL, 
-    [Apellidos] VARCHAR(200) NOT NULL, 
-    [Cuidad] VARCHAR(50) NULL, 
-    [CodigoPostal] INT NULL, 
-    [Telefono] VARCHAR(20) NULL, 
-    [Estado] BIT NOT NULL, 
-    [IdTipoPersona] INT NOT NULL, 
-    CONSTRAINT [FK_Personas_TipoPersona] FOREIGN KEY ([IdTipoPersona]) REFERENCES [TipoPersona]([IdTipoPersona])
-)
-go
+
 
 
 INSERT INTO EstadoCitas values('Activa'), ('Cancelada'), ('Reagendada')
