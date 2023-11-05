@@ -34,8 +34,9 @@ CREATE TABLE [dbo].[Personas]
 (
 	[IdPersona] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [Nombre] VARCHAR(200) NOT NULL, 
-    [Apellidos] VARCHAR(200) NOT NULL, 
-    [Cuidad] VARCHAR(50) NULL, 
+    [Apellidos] NVARCHAR(200) NOT NULL, 
+    [Direccion] NVARCHAR(200) NOT NULL,
+    [Cuidad] NVARCHAR(50) NULL, 
     [CodigoPostal] INT NULL, 
     [Telefono] VARCHAR(20) NULL, 
     [Estado] BIT NOT NULL, 
@@ -74,7 +75,7 @@ go
 CREATE TABLE [dbo].[Usuarios]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
-    [Nombre] VARCHAR(50) NOT NULL, 
+    [Nombre] NVARCHAR(150) NOT NULL, 
     [Email] NVARCHAR(50) NOT NULL, 
     [Contrasenia] NVARCHAR(50) NOT NULL, 
     [IdRol] INT NOT NULL, 
@@ -98,16 +99,19 @@ go
 CREATE TABLE [dbo].[Pacientes]
 (
 	[IdPaciente] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
-    [Nombre] VARCHAR(150) NOT NULL, 
+    [Nombre] NVARCHAR(150) NOT NULL, 
     [Raza] VARCHAR(150) NULL, 
     [Especie] VARCHAR(50) NULL, 
-    [Sexo] NCHAR(10) NULL, 
+    [Sexo] VARCHAR(20) NULL, 
     [Edad] VARCHAR(50) NULL, 
     [Color] VARCHAR(50) NULL, 
     [Peso] VARCHAR(50) NULL, 
     [Estado] BIT NOT NULL, 
     [Fecha] DATETIME NOT NULL, 
     [IdPersona] INT NOT NULL, 
+    [Imagen] VARBINARY(MAX) NULL,
+    [NombreArchivo] NVARCHAR(50) NULL,
+    [TipoContenido] NVARCHAR(50) NULL,
     CONSTRAINT [FK_Pacientes_Personas] FOREIGN KEY ([IdPersona]) REFERENCES [Personas]([IdPersona]) 
 )
 go
@@ -124,7 +128,7 @@ CREATE TABLE [Inventarios]
 )
 go
 
-CREATE TABLE [Internamientos]
+CREATE TABLE [dbo].[Internamientos]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [FechaIngreso] DATETIME NOT NULL, 
@@ -133,11 +137,8 @@ CREATE TABLE [Internamientos]
     [Tratamiento] VARCHAR(150) NULL, 
     [Estado] BIT NOT NULL, 
     [IdPaciente] INT NOT NULL, 
-    [IdUsuario] INT NOT NULL, 
-    [IdPersonaDepartamento] INT NOT NULL, 
-    CONSTRAINT [FK_Internamientos_Pacientes] FOREIGN KEY ([IdPaciente]) REFERENCES [Pacientes]([IdPaciente]), 
-    CONSTRAINT [FK_Internamientos_Personas] FOREIGN KEY ([IdUsuario]) REFERENCES [Personas]([IdPersona]), 
-    CONSTRAINT [FK_Internamientos_PersonaDepartamento] FOREIGN KEY ([IdPersonaDepartamento]) REFERENCES [PersonaDepartamento]([IdPersonaDepartamento])
+    [IdPersona] INT NOT NULL, 
+    [IdDoctor] INT NOT NULL 
 )
 go
 
@@ -145,7 +146,7 @@ CREATE TABLE [Historiales]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [FechaVisita] DATETIME NULL, 
-    [Motivo] VARCHAR(200) NULL, 
+    [Motivo] NVARCHAR(200) NULL, 
     [Diagnostico] VARCHAR(200) NULL, 
     [IdPaciente] INT NOT NULL, 
     CONSTRAINT [FK_Historiales_Pacientes] FOREIGN KEY ([IdPaciente]) REFERENCES [Pacientes]([IdPaciente])
@@ -156,7 +157,7 @@ CREATE TABLE [dbo].[Citas]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [FechaCita] DATETIME NOT NULL, 
-    [Motivo] VARCHAR(200) NOT NULL, 
+    [Motivo] NVARCHAR(200) NOT NULL, 
     [IdPersona] INT NOT NULL, 
     [IdEstado] INT NOT NULL, 
     CONSTRAINT [FK_Citas_Personas] FOREIGN KEY ([IdPersona]) REFERENCES [Personas]([IdPersona]), 

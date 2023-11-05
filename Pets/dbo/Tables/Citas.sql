@@ -2,7 +2,7 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [FechaCita] DATETIME NOT NULL, 
-    [Motivo] VARCHAR(200) NOT NULL, 
+    [Motivo] NVARCHAR(200) NOT NULL, 
     [IdPersona] INT NOT NULL, 
     [IdEstado] INT NOT NULL, 
     CONSTRAINT [FK_Citas_Personas] FOREIGN KEY ([IdPersona]) REFERENCES [Personas]([IdPersona]), 
