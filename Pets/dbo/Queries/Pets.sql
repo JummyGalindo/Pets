@@ -41,6 +41,8 @@ CREATE TABLE [dbo].[Personas]
     [Telefono] VARCHAR(20) NULL, 
     [Estado] BIT NOT NULL, 
     [IdTipoPersona] INT NOT NULL, 
+    [ApellidoPaterno] NVARCHAR(100) NULL, 
+    [ApellidoMaterno] NVARCHAR(100) NULL,
     CONSTRAINT [FK_Personas_TipoPersona] FOREIGN KEY ([IdTipoPersona]) REFERENCES [TipoPersona]([IdTipoPersona])
 )
 go
