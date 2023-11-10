@@ -10,5 +10,8 @@
     [PrecioSugerido] DECIMAL NOT NULL, 
     [Descripcion] VARCHAR(200) NULL, 
     [FechaVencimiento] DATETIME NULL, 
-    [Estado] BIT NOT NULL
+    [Estado] BIT NOT NULL,
+    [Imagen] VARBINARY(MAX) NULL,
+    [NombreArchivo] NVARCHAR(50) NULL,
+    [TipoContenido] NVARCHAR(50) NULL,
 )
