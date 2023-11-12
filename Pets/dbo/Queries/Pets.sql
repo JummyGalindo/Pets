@@ -52,7 +52,7 @@ go
 
 CREATE TABLE [dbo].[EstadoCitas]
 (
-	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[Id] INT NOT NULL PRIMARY KEY,
 	[Nombre] VARCHAR(100) NOT NULL
 )
 GO
@@ -193,7 +193,7 @@ CREATE TABLE [dbo].[DetalleVenta]
 )
 go
 
-INSERT INTO EstadoCitas values('Activa'), ('Cancelada'), ('Reagendada')
+INSERT INTO EstadoCitas values(1,'Activa'), (2,'Cancelada'), (3,'Reagendada'),(4,'Vencida')
 go
 
 INSERT INTO TipoPersona VALUES('Administrador',null)
