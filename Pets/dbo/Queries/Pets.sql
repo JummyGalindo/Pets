@@ -46,6 +46,7 @@ CREATE TABLE [dbo].[Personas]
     [IdTipoPersona] INT NOT NULL, 
     [ApellidoPaterno] NVARCHAR(100) NULL, 
     [ApellidoMaterno] NVARCHAR(100) NULL,
+    [IdUser] INT NULL,
     CONSTRAINT [FK_Personas_TipoPersona] FOREIGN KEY ([IdTipoPersona]) REFERENCES [TipoPersona]([IdTipoPersona])
 )
 go
@@ -117,6 +118,7 @@ CREATE TABLE [dbo].[Pacientes]
     [Imagen] VARBINARY(MAX) NULL,
     [NombreArchivo] NVARCHAR(50) NULL,
     [TipoContenido] NVARCHAR(50) NULL,
+    [IdUser] INT NULL,
     CONSTRAINT [FK_Pacientes_Personas] FOREIGN KEY ([IdPersona]) REFERENCES [Personas]([IdPersona]) 
 )
 go
@@ -143,7 +145,8 @@ CREATE TABLE [dbo].[Internamientos]
     [Estado] BIT NOT NULL, 
     [IdPaciente] INT NOT NULL, 
     [IdPersona] INT NOT NULL, 
-    [IdDoctor] INT NOT NULL 
+    [IdDoctor] INT NOT NULL,
+    [IdUser] INT NULL,
 )
 go
 
@@ -154,6 +157,7 @@ CREATE TABLE [Historiales]
     [Motivo] NVARCHAR(200) NULL, 
     [Diagnostico] VARCHAR(200) NULL, 
     [IdPaciente] INT NOT NULL, 
+    [IdUser] INT NULL,
     CONSTRAINT [FK_Historiales_Pacientes] FOREIGN KEY ([IdPaciente]) REFERENCES [Pacientes]([IdPaciente])
 )
 go
@@ -165,6 +169,7 @@ CREATE TABLE [dbo].[Citas]
     [Motivo] NVARCHAR(200) NOT NULL, 
     [IdPersona] INT NOT NULL, 
     [IdEstado] INT NOT NULL, 
+    [IdUser] INT NULL,
     CONSTRAINT [FK_Citas_Personas] FOREIGN KEY ([IdPersona]) REFERENCES [Personas]([IdPersona]), 
     CONSTRAINT [FK_Citas_EstadoCitas] FOREIGN KEY ([IdEstado]) REFERENCES [EstadoCitas]([Id]) 
 )
@@ -176,6 +181,7 @@ CREATE TABLE [dbo].[Ventas]
     [FechaVenta] DATETIME NOT NULL,
     [CantidadArticulos] INT NOT NULL, 
     [Total] DECIMAL NOT NULL, 
+    [IdUser] INT NULL,
 )
 go
 

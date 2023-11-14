@@ -4,4 +4,5 @@
     [FechaVenta] DATETIME NOT NULL,
     [CantidadArticulos] INT NOT NULL, 
     [Total] DECIMAL NOT NULL, 
+    [IdUser] INT NULL,
 )

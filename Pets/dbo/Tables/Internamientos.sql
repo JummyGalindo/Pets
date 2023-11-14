@@ -8,5 +8,6 @@
     [Estado] BIT NOT NULL, 
     [IdPaciente] INT NOT NULL, 
     [IdPersona] INT NOT NULL, 
-    [IdDoctor] INT NOT NULL 
+    [IdDoctor] INT NOT NULL ,
+    [IdUser] INT NULL,
 )

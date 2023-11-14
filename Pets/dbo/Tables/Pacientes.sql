@@ -15,5 +15,6 @@
     [Imagen] VARBINARY(MAX) NULL,
     [NombreArchivo] NVARCHAR(50) NULL,
     [TipoContenido] NVARCHAR(50) NULL,
+    [IdUser] INT NULL,
     CONSTRAINT [FK_Pacientes_Personas] FOREIGN KEY ([IdPersona]) REFERENCES [Personas]([IdPersona]) 
 )
